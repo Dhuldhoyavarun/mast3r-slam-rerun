@@ -12,16 +12,14 @@ cuda = "12.6"
 _install-lietorch = { cmd = "python -m pip install git+https://github.com/Dhuldhoyavarun/lietorch.git@cu126", outputs = [
     ".pixi/envs/default/lib/python3.11/site-packages/lietorch/__init__.py",
 ] }
-_install-simplecv = { cmd = "python -m pip install git+https://github.com/pablovela5620/simplecv@0.40", outputs = [
-    ".pixi/envs/default/lib/python3.11/site-packages/simplecv/__init__.py",
-] }
+
 
 _install-mast3r = { cmd = "python -m pip install -e thirdparty/mast3r", outputs = [
     "thirdparty/mast3r/MAST3R.egg-info",
 ] }
 install = { cmd = "python -m pip install --no-build-isolation -e . ", depends-on = [
     "_install-lietorch",
-    "_install-simplecv",
+
     "_install-mast3r",
     "_download-checkpoints",
     "_download-example-data",

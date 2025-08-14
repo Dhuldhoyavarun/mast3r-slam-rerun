@@ -15,10 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -fsSL https://pixi.sh/install.sh | bash
 ENV PATH="/root/.pixi/bin:${PATH}"
 
-ARG REPO_URL="https://github.com/Dhuldhoyavarun/mast3r-slam-rerun.git"
+ARG REPO_URL="https://github.com/Dhuldhoyavarun/mast3r-slam-rerun.git@cu126"
 ARG REPO_REF="cu126"
 WORKDIR /app
-RUN git clone --depth=1 --branch "${REPO_REF}" "${REPO_URL}" /app \
+RUN git clone --depth=1 "${REPO_URL}" /app \
  && git submodule update --init --recursive || true \
  && git lfs pull || true
 

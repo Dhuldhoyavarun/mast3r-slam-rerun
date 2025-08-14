@@ -468,7 +468,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/4b/2a/0a131f572aa09f741c30ccd45a8e56316e8be8dfc7bc19bf0ab7cfef7b19/nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/58/d1/d1c80553f9d5d07b6072bc132607d75a0ef3600e28e1890e11c0f55d7346/nvidia_nvjitlink_cu12-12.4.99-py3-none-manylinux2014_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/d1/e8/d36836b500fa8693500228843317f28373209e9db873c76bc19af6ace63a/nvidia_nvtx_cu12-12.4.99-py3-none-manylinux2014_x86_64.whl
-     
+      - pypi: git+https://github.com/pablovela5620/simplecv.git@v0.4.1
       - pypi: https://files.pythonhosted.org/packages/b2/fe/81695a1aa331a842b582453b605175f419fe8540355886031328089d840a/sympy-1.13.1-py3-none-any.whl
       - pypi: https://download.pytorch.org/whl/cu124/torch-2.4.1%2Bcu124-cp311-cp311-linux_x86_64.whl#sha256=16e4ef3b32b45a278a0c512723f81cfa57035ebd5a75dbc2fb1360197ae06acd
       - pypi: https://download.pytorch.org/whl/cu124/torchvision-0.19.1%2Bcu124-cp311-cp311-linux_x86_64.whl#sha256=fc68074915f5b08c8928ee67bb12c9b8b5ef3db9b4d233cc109a7ccb13e43296
@@ -5710,6 +5710,22 @@ packages:
   - pkg:pypi/shtab?source=hash-mapping
   size: 19666
   timestamp: 1734664660064
+- pypi: git+https://github.com/pablovela5620/simplecv.git@v0.4.1
+  name: simplecv
+  version: 0.4.1
+  requires_dist:
+  - jaxtyping>=0.2.33
+  - beartype>=0.19.0
+  - numpy<2.0
+  - einops>=0.8.0
+  - icecream>=2.1.3
+  - opencv-python>=4.10.0
+  - pyserde>=0.20.0
+  - rerun-sdk>=0.21.0
+  - tyro>=0.9.1
+  - tqdm>=4.67
+  - hf-transfer>=0.1.9
+  requires_python: '>=3.11'
 - conda: https://prefix.dev/conda-forge/noarch/six-1.17.0-pyhd8ed1ab_0.conda
   sha256: 41db0180680cc67c3fa76544ffd48d6a5679d96f4b71d7498a759e94edc9a2db
   md5: a451d576819089b0d672f18768be0f65
