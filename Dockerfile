@@ -26,6 +26,8 @@ RUN pixi install --locked || pixi install
 
 RUN pixi task list || true
 
+RUN pixi run example-base
+
 EXPOSE 7860
 
 CMD ["pixi", "run", "app"]
