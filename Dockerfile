@@ -22,8 +22,8 @@ WORKDIR /app
 RUN git clone --depth=1 --branch "${REPO_REF}" "${REPO_URL}" /app \
  && git submodule update --init --recursive || true \
  && git lfs pull || true
-RUN pixi update
-RUN pixi run example-base
+
+RUN pixi install --locked || pixi install
 
 RUN pixi task list || true
 
