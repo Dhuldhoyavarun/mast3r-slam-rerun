@@ -13,9 +13,7 @@ _install-lietorch = { cmd = "python -m pip install git+https://github.com/Dhuldh
     ".pixi/envs/default/lib/python3.11/site-packages/lietorch/__init__.py",
 ] }
 
-_install-simplecv = { cmd = "python -m pip install git+https://github.com/Dhuldhoyavarun/simplecv.git@v0.4.1", outputs = [
-    ".pixi/envs/default/lib/python3.11/site-packages/simplecv/__init__.py",
-] }
+
 
 
 _install-mast3r = { cmd = "python -m pip install -e thirdparty/mast3r", outputs = [
@@ -23,7 +21,7 @@ _install-mast3r = { cmd = "python -m pip install -e thirdparty/mast3r", outputs 
 ] }
 install = { cmd = "python -m pip install --no-build-isolation -e . ", depends-on = [
     "_install-lietorch",
-    "_install-simplecv",
+
     "_install-mast3r",
     "_download-checkpoints",
     "_download-example-data",
@@ -68,7 +66,7 @@ description = "Downloads Example Data"
 torch = { version = "==2.7.1", index = "https://download.pytorch.org/whl/cu126" }
 torchvision = { version = "==0.22.1", index = "https://download.pytorch.org/whl/cu126" }
 # torchcodec = { version = "==0.2.0", index = "https://download.pytorch.org/whl/cu126" }
-#simplecv = { git = "https://github.com/pablovela5620/simplecv.git@v0.4.1" }
+simplecv = { git = "https://github.com/pablovela5620/simplecv.git@v0.4.1" }
 # lietorch = { url = "https://huggingface.co/datasets/pablovela5620/mast3r-slam-whls/resolve/main/lietorch-0.2-cp311-cp311-linux_x86_64.whl" }
 gradio-rerun = { url = "https://huggingface.co/datasets/pablovela5620/gradio-rr-wheels/resolve/main/gradio_rerun-0.0.11-py3-none-any.whl" }
 
