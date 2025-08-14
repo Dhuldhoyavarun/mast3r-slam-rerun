@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM nvidia/cuda:12.6.2-cudnn-devel-ubuntu22.04
+FROM nvidia/cuda:12.6.2-cudnn-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     RERUN_DISABLE_TELEMETRY=1 \
@@ -7,7 +7,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git git-lfs curl ca-certificates pkg-config build-essential \
-    cmake ninja-build \
     ffmpeg libgl1 libglib2.0-0 libsm6 libxext6 libxrender1 \
  && git lfs install \
  && rm -rf /var/lib/apt/lists/*
