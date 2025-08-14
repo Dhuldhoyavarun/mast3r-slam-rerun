@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://pixi.sh/install.sh | bash
+
 ENV PATH="/root/.pixi/bin:${PATH}"
 
 ARG REPO_URL="https://github.com/Dhuldhoyavarun/mast3r-slam-rerun.git"
@@ -21,8 +22,8 @@ WORKDIR /app
 RUN git clone --depth=1 --branch "${REPO_REF}" "${REPO_URL}" /app \
  && git submodule update --init --recursive || true \
  && git lfs pull || true
-
-RUN pixi install --locked || pixi install
+RUN pixi update
+RUN pixi run example-base
 
 RUN pixi task list || true
 
