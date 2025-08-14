@@ -66,7 +66,7 @@ description = "Downloads Example Data"
 torch = { version = "==2.7.1", index = "https://download.pytorch.org/whl/cu126" }
 torchvision = { version = "==0.22.1", index = "https://download.pytorch.org/whl/cu126" }
 # torchcodec = { version = "==0.2.0", index = "https://download.pytorch.org/whl/cu126" }
-simplecv = { git = "https://github.com/pablovela5620/simplecv.git@v0.4.1" }
+simplecv = { git = "https://github.com/pablovela5620/simplecv/tree/v0.4.1" }
 # lietorch = { url = "https://huggingface.co/datasets/pablovela5620/mast3r-slam-whls/resolve/main/lietorch-0.2-cp311-cp311-linux_x86_64.whl" }
 gradio-rerun = { url = "https://huggingface.co/datasets/pablovela5620/gradio-rr-wheels/resolve/main/gradio_rerun-0.0.11-py3-none-any.whl" }
 
