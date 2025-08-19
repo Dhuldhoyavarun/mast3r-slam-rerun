@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+
 FROM nvidia/cuda:12.6.2-cudnn-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -26,7 +26,7 @@ RUN pixi install --locked || pixi install
 
 RUN pixi task list || true
 
-RUN pixi run example-base
+
 
 EXPOSE 7860
 
