@@ -1,0 +1,20 @@
+# docker-compose.yml
+services:
+  mast3r-slam:
+    container_name: mast3r-slam
+    image: mast3r-slam-container:v5
+    ipc: host
+    stdin_open: true
+    tty: true
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+    ports:
+      - "7860:7860"
+    volumes:
+      - mast3r-slam:/app/data
+      - mast3r-slam:/app/checkpoints
+    gpus: all
+    command: ["pixi", "run", "app"]
+
+volumes:
+  mast3r-slam: {}
