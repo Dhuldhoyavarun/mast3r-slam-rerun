@@ -12,8 +12,8 @@ from mast3r_slam.frame import SharedKeyframes
 from mast3r_slam.lietorch_utils import as_SE3
 import lietorch
 from simplecv.ops import conventions
-from mast3r_slam.mast3r_utils import frame_to_intir
-
+#from mast3r_slam.mast3r_utils import frame_to_intir
+from mast3r_slam.mast3r_utils import estimate_focal_knowing_depth
 
 @serde
 class NSFrame:
@@ -41,7 +41,22 @@ class NerfstudioData:
     applied_transform: Float32[np.ndarray, "3 4"]
     ply_file_path: Literal["sparse_pc.ply"]
 
+def custom_serializer(obj):
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
 
+
+def frame_to_intir(frame: "Frame") -> tuple[tuple[float, float], tuple[float, float]]:
+    H = frame.img_shape.squeeze()[0].item()
+    W = frame.img_shape.squeeze()[1].item()
+
+    pp: Float32[torch.Tensor, "2"] = torch.tensor((W / 2, H / 2))
+    pts3d: Float32[torch.Tensor, "H W 3"] = frame.X_canon.clone().cpu().reshape(H, W, 3)
+    focal: float = float(
+        estimate_focal_knowing_depth(pts3d[None], pp, focal_mode="weiszfeld")
+    )
+
+    return (focal, focal), (float(pp[0].item()), float(pp[1].item()))
 def save_kf_to_nerfstudio(
     ns_save_path: Path,
     keyframes: SharedKeyframes,
@@ -161,8 +176,10 @@ def save_kf_to_nerfstudio(
         applied_transform=np.eye(3, 4, dtype=np.float32),
         ply_file_path="sparse_pc.ply",
     )
-    json_str: str = to_json(ns_data)
-    with open(ns_save_path / "transforms.json", "w") as f:
-        f.write(json_str)
+    ns_dict=ns_data.__dict__
+    ns_dict["applied_transform"]=ns_dict["applied_transform"].tolist()
+    #json_str: str = to_json(ns_data)
+    #with open(ns_save_path / "transforms.json", "w") as f:
+        #f.write(json_str)
 
     return pcd

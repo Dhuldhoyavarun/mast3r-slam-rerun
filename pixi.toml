@@ -6,17 +6,22 @@ platforms = ["linux-64"]
 version = "0.1.0"
 
 [system-requirements]
-cuda = "12.4"
+cuda = "12.6"
 
 [tasks]
-_install-lietorch = { cmd = "python -m pip install git+https://github.com/princeton-vl/lietorch.git", outputs = [
+_install-lietorch = { cmd = "python -m pip install git+https://github.com/Dhuldhoyavarun/lietorch.git@cu126", outputs = [
     ".pixi/envs/default/lib/python3.11/site-packages/lietorch/__init__.py",
 ] }
+
+
+
+
 _install-mast3r = { cmd = "python -m pip install -e thirdparty/mast3r", outputs = [
     "thirdparty/mast3r/MAST3R.egg-info",
 ] }
 install = { cmd = "python -m pip install --no-build-isolation -e . ", depends-on = [
     "_install-lietorch",
+
     "_install-mast3r",
     "_download-checkpoints",
     "_download-example-data",
@@ -58,18 +63,18 @@ outputs = ["data/normal-apt-tour.MOV"]
 description = "Downloads Example Data"
 
 [pypi-dependencies]
-torch = { version = "==2.4.1", index = "https://download.pytorch.org/whl/cu124" }
-torchvision = { version = "==0.19.1", index = "https://download.pytorch.org/whl/cu124" }
-# torchcodec = { version = "==0.2.0", index = "https://download.pytorch.org/whl/cu124" }
-simplecv = { git = "https://github.com/pablovela5620/simplecv.git" }
+torch = { version = "==2.7.1", index = "https://download.pytorch.org/whl/cu126" }
+torchvision = { version = "==0.22.1", index = "https://download.pytorch.org/whl/cu126" }
+# torchcodec = { version = "==0.2.0", index = "https://download.pytorch.org/whl/cu126" }
+simplecv = { git = "https://github.com/pablovela5620/simplecv.git", tag="v0.4.0" }
 # lietorch = { url = "https://huggingface.co/datasets/pablovela5620/mast3r-slam-whls/resolve/main/lietorch-0.2-cp311-cp311-linux_x86_64.whl" }
 gradio-rerun = { url = "https://huggingface.co/datasets/pablovela5620/gradio-rr-wheels/resolve/main/gradio_rerun-0.0.11-py3-none-any.whl" }
 
 [dependencies]
 python = "3.11.*"
 numpy = "<2"
-cuda-nvcc = "12.4.*"
-cuda-version = "12.4.*"
+cuda-nvcc = "12.6.*"
+cuda-version = "12.6.*"
 ffmpeg = ">=7.1.0,<8"
 pip = ">=25.0.1,<26"
 tyro = ">=0.9.1,<0.10"
